@@ -36,5 +36,10 @@ int		ft_strcmp(char *s1, char *s2);
 int		write_zero_flag_2 (const char *s);
 int 	write_spaces_2(const char *s, int neg, char *tmp);
 int		check_single_convers(const char *s);
+int		write_spaces_nbr(const char *s, int neg, va_list ap);
+int		ft_tronc_nbr(const char	*s, va_list ap);
+char	*ft_itoa(int n);
+int		write_nbr_left_right(const char *s, char *s0, va_list ap, int neg);
+char	*return_ap (const char s, va_list ap);
 
 #	endif

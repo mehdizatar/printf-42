@@ -6,7 +6,7 @@
 /*   By: mzatar <mzatar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/09 15:54:40 by mehdi             #+#    #+#             */
-/*   Updated: 2020/08/17 18:01:09 by mzatar           ###   ########.fr       */
+/*   Updated: 2020/08/18 16:14:15 by mzatar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,4 +195,48 @@ int	ft_isdigit(int c)
 	if ((c > '0' && c <= '9'))
 		return (1);
 	return (0);
+}
+
+static int			nbr_length(int n)
+{
+	int		length;
+	long	nb;
+
+	length = 1;
+	nb = n;
+	if (nb < 0)
+	{
+		length++;
+		nb *= -1;
+	}
+	while (nb >= 10)
+	{
+		length++;
+		nb /= 10;
+	}
+	return (length);
+}
+
+char				*ft_itoa(int n)
+{
+	long	nbr;
+	int		index;
+	char	*str;
+
+	if (!(str = malloc(sizeof(char) * (nbr_length(n) + 1))))
+		return (NULL);
+	nbr = (long)n;
+	if (n < 0)
+		str[0] = '-';
+	if (nbr < 0)
+		nbr *= -1;
+	index = 0;
+	str[nbr_length(n) - index++] = '\0';
+	while (nbr >= 10)
+	{
+		str[nbr_length(n) - index++] = (nbr % 10) + 48;
+		nbr /= 10;
+	}
+	str[nbr_length(n) - index++] = nbr + 48;
+	return (str);
 }
